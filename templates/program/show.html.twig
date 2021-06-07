@@ -2,6 +2,7 @@
 
 {% block title %}{{ program.title }}{% endblock %}
 {% block content %}
+    {{ dump() }}
     <div class="media">
         <img class="align-self-start mr-3" src="{{program.poster}}" alt="{{ program.title }} poster">
         <div class="media-body">
@@ -11,11 +12,13 @@
         </div>
     </div>
 
-    <a href="{{ path('program_index') }}">Retour à la liste des programmes
-    </a> <br>
+    <nav class="season">
+        {% for season in program.seasons %}
+        <button><a href="{{ path('program_season_show', { programId: program.id, seasonId: season.id }) }}">saison {{ season.number }}</a></button>
+        {% endfor %}
+    </nav>
 
-    ou <br>
-
-    <a href="{{ path('category_index') }}">à la liste des catégories</a>
-
+    <footer>
+        <a href="{{ path('category_show', { categoryName: program.category.name}) }}">Retour à la catégorie</a>
+    </footer>
 {% endblock %}

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Program;
+use App\Entity\Season;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -49,6 +50,29 @@ Class ProgramController extends AbstractController
             'program' =>$program
         ]);
     }
+
+    /**
+     * @route("/{programId<^[0-9]+$>}/seasons/{seasonId<^[0-9]+$>}}", methods={"GET"}, name="season_show")
+     * @param int $programId
+     * @param int $seasonId
+     * @return Response
+     */
+    public function showSeason(int$programId, int $seasonId): response
+    {
+        $program = $this->getDoctrine()
+            ->getRepository(Program::class)
+            ->findOneBy(['id' => $programId]);
+
+        $season = $this->getDoctrine()
+            ->getRepository(Season::class)
+            ->findOneBy(['id' => $seasonId]);
+
+        return $this->render('program/show_season.html.twig', [
+            'program' => $program,
+            'season' => $season
+        ]);
+    }
+
 
 
 }
