@@ -1,20 +1,25 @@
-{% include 'base.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block content %}
+    <h1>{{ program.title }}</h1>
 {{ dump() }}
-<h1>{{ program.title }}</h1>
-
     <section>
-        <p>résumé de la série : <br> {{ program.summary }}</p>
+        <p>résumé de la saison : <br> {{ season.description }}</p>
 
-        <h2>Saison {{ season.id }} <br> parue en {{ season.year }}</h2>
+        <h2>Saison {{ season.number }} <br> parue en {{ season.year }}</h2>
 
-        <p>Liste de épisodes : </p>
+        <p>Liste des épisodes : </p>
 
         {% for episode in season.episodes %}
 
-        <h3>episode {{ episode.number }} : {{ episode.title }}</h3>
-        <p>synopsis : <br> {{ episode.synopsis }}</p>
+            <a href="{{ path('program_episode_show', {
+                'program': program.id,
+                'season': season.id,
+                'episode': episode.id
+            }) }}">
+                episode {{ episode.number }} : {{ episode.title }}
+            </a>
+            <br>
 
         {% endfor %}
     </section>
