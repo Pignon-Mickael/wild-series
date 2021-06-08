@@ -5,7 +5,7 @@
 
     <h1>Liste des séries de la catégorie {{ category.name }}</h1>
     {% for program in programs %}
-        <div>
+        <div class="container">
             <h2>{{ loop.index }} / {{ program.title }}</h2>
 
             {#
@@ -13,17 +13,22 @@
                 <div class="flex-shrink-0">
                     <img src="{{ program.poster }}" alt="{{ program.title }}">
                 </div>
+            </div>
             #}
+
             <div class="flex-grow-1 ms-3">
                 <p>{{ program.summary }}</p>
             </div>
-        </div>
 
-        <a href="{{ path("program_show", { id: program.id}) }}">Voir la fiche</a>
+            <a href="{{ path("program_show", { id: program.id}) }}">Voir la fiche</a>
         </div>
     {% else %}
         Aucune série trouvée
     {% endfor %}
+    <div>
+        <a href="{{ path('program_new') }}">Ajouter une série</a>
+    </div>
+
     <div>
         <a href="{{ path('category_index') }}">
             Retour à la liste des catégories

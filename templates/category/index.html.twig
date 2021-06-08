@@ -3,16 +3,27 @@
 {% block title %}Toutes les catégories{% endblock %}
     {% block content %}
         <h1>Toutes les catégories</h1>
-        {% for category in categories %}
-            <div>
-                <a href="{{ path("category_show", { categoryName: category.name }) }}">{{ category.name }}
-                    </a>
+        <div class="container">
+            <div class="row">
+                {% for category in categories %}
+                    <div class="col">
+                        <a href="{{ path("category_show", { categoryName: category.name }) }}">{{ category.name }}
+                        </a>
+                    </div>
+                {% else %}
+                    Aucune catégorie pour le moment 😓
+                {% endfor %}
             </div>
+        </div>
+        <section>
+            <a href="{{ path('category_new') }}">Ajouter une catégorie</a>
+            ou
+            <a href="{{ path('program_new') }}">Ajouter une série</a>
+        </section>
 
-            {% else %}
-            Aucune catégorie pour le moment 😓
-        {% endfor %}
+        <section>
+            <a href="{{ path('app_index') }}">Retour à l'accueil</a>
+        </section>
 
-        <a href="{{ path('app_index') }}">Retour à l'accueil</a>
 
     {% endblock %}
