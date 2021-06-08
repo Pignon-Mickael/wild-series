@@ -42,7 +42,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @route("/{program<^[0-9]+$>}/seasons/{season<^[0-9]+$>}}", methods={"GET"}, name="season_show")
+     * @route("/{program<^[0-9]+$>}/seasons/{season<^[0-9]+$>}", methods={"GET"}, name="season_show")
      * @param Program $program
      * @param Season $season
      * @return Response

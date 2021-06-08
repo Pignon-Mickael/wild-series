@@ -4,19 +4,31 @@
 {% block content %}
 
     <h1>Liste des séries de la catégorie {{ category.name }}</h1>
-     {% for program in programs %}
+    {% for program in programs %}
         <div>
-            <h2>{{ loop.index }}/ {{ program.title }}</h2><br>
-                <h3>Id : {{ program.id}} </h3>
-            <p>{{ program.summary }}</p>
-            <a href="{{ path("program_show", { id: program.id}) }}">Voir la fiche</a>
+            <h2>{{ loop.index }} / {{ program.title }}</h2>
+
+            {#
+            <div class="d-flex">
+                <div class="flex-shrink-0">
+                    <img src="{{ program.poster }}" alt="{{ program.title }}">
+                </div>
+            #}
+            <div class="flex-grow-1 ms-3">
+                <p>{{ program.summary }}</p>
+            </div>
+        </div>
+
+        <a href="{{ path("program_show", { id: program.id}) }}">Voir la fiche</a>
         </div>
     {% else %}
         Aucune série trouvée
     {% endfor %}
+    <div>
+        <a href="{{ path('category_index') }}">
+            Retour à la liste des catégories
+        </a>
+    </div>
 
-    <a href="{{ path('category_index') }}">
-        Retour à la liste des catégories
-    </a>
 
 {% endblock %}
