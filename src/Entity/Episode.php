@@ -4,9 +4,11 @@ namespace App\Entity;
 
 use App\Repository\EpisodeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EpisodeRepository::class)
+ * @Assert\EnableAutoMapping
  */
 class Episode
 {
@@ -19,6 +21,7 @@ class Episode
 
     /**
      * @ORM\Column(type="string", length=150)
+     * @Assert\Length(min="3", minMessage="trop court")
      */
     private $title;
 
