@@ -13,10 +13,13 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
     public const PROGRAMS = [
         [
             'title' => 'Game Of Thrones',
-            'summary' => 'Dans le continent mythique de Westeros, plusieurs familles puissantes se battent pour le 
-          contrôle des sept royaumes. Alors que le conflit éclate dans les royaumes des hommes, un ancien ennemi se lève
-           une fois de plus pour les menacer tous. Pendant ce temps, les derniers héritiers d\'une dynastie récemment 
-           usurpée complotent pour reprendre leur terre natale de l\'autre côté de la mer Narrow Sea.',
+            'summary' => 'Il y a très longtemps, à une époque oubliée, une force a détruit l\'équilibre des saisons. 
+            Dans un pays où l\'été peut durer plusieurs années et l\'hiver toute une vie, des forces sinistres et 
+            surnaturelles se pressent aux portes du Royaume des Sept Couronnes. La confrérie de la Garde de Nuit, 
+            protégeant le Royaume de toute créature pouvant provenir d\'au-delà du Mur protecteur, n\'a plus les ressources
+             nécessaires pour assurer la sécurité de tous. Après un été de dix années, un hiver rigoureux s\'abat sur le
+              Royaume avec la promesse d\'un avenir des plus sombres. Pendant ce temps, complots et rivalités se jouent 
+              sur le continent pour s\'emparer du Trône de Fer, le symbole du pouvoir absolu.',
             'poster' => 'https://cdn.radiofrance.fr/s3/cruiser-production/2019/04/3de4b702-38df-4410-8b6b-160a4872002d/838_gameofthrones8-20-posters_1.jpg',
             'category' => 1,
             'country' => 'Etats-uni, Royaume-uni',
@@ -24,13 +27,12 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
         ],
         [
             'title' => 'One Piece',
-            'summary' => 'Il était une fois un pirate nommé Gol D. Roger. Il a obtenu richesse, gloire et pouvoir pour 
-            gagner le titre de Roi des Pirates. Lorsqu\'il fut capturé et sur le point d\'être exécuté, il révéla que 
-            son trésor appelé One Piece était caché quelque part à Grand Line. Tout le monde s\'est alors mis à la 
-            recherche du trésor d\'une seule pièce, mais personne n\'a jamais trouvé l\'emplacement du trésor de Gol D. 
-            Roger, et Grand Line était un endroit trop dangereux pour être franchi. Vingt-deux ans après la mort de Gol 
-            D. Roger, un garçon nommé Monkey D. Luffy a décidé de devenir un pirate et de chercher le trésor de Gol D. 
-            Roger pour devenir le prochain roi pirate.',
+            'summary' => 'Il fut un temps où Gold Roger était le plus grand de tous les pirates, le "Roi des Pirates" 
+            était son surnom. A sa mort, son trésor d\'une valeur inestimable connu sous le nom de "One Piece" fut caché 
+            quelque part sur "Grand Line". De nombreux pirates sont partis à la recherche de ce trésor mais tous sont morts avant 
+            même de l\'atteindre. Monkey D. Luffy rêve de retrouver ce trésor légendaire et de devenir le nouveau "Roi des Pirates". 
+            Après avoir mangé un fruit du démon, il possède un pouvoir lui permettant de réaliser son rêve. Il lui faut maintenant 
+            trouver un équipage pour partir à l\'aventure !',
             'poster' => 'https://i0.wp.com/anitrendz.net/news/wp-content/uploads/2020/04/One-Piece.jpg?resize=696%2C392&ssl=1',
             'category' => 2,
             'country' => 'Japan',
@@ -56,6 +58,20 @@ class ProgramFixtures extends Fixture implements DependentFixtureInterface
             'category' => 4,
             'country' => 'Etats-uni',
             'year' => 2015
+        ],
+        [
+            'title' => 'Sword Art Online',
+            'summary' => 'Le monde prend la forme d\'un château flottant géant appelé Aincrad, comportant 100 paliers. 
+            Chaque étage dispose d\'un cadre de style médiéval et un donjon avec un boss qui doit être vaincu pour que 
+            les joueurs puissent accéder à l\'étage supérieur. Comme la plupart des jeux de rôle, le jeu propose un 
+            système de niveau. Cependant, après la période de bêta test, le créateur du jeu a activé un système pour 
+            piéger les joueurs à l\'intérieur d\'Aincrad, empêchant toute déconnexion. Pour pouvoir quitter le jeu, il 
+            faut que quelqu\'un le finisse. Si les joueurs meurent dans le jeu ou si leurs casques d\'immersion 
+            virtuelle sont enlevés de force, leur cerveau reçoit un flux de micro-ondes entraînant la mort.',
+            'poster' => 'https://fr.web.img6.acsta.net/pictures/19/07/09/11/04/5921608.jpg',
+            'category' => 0,
+            'country' => 'Japon',
+            'year' => 2012
         ]
     ];
 

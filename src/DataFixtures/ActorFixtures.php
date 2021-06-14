@@ -9,10 +9,13 @@ use Doctrine\Persistence\ObjectManager;
 class ActorFixtures extends Fixture
 {
     public const ACTORS = [
-            'Andrew Lincoln',
-            'Norman Reedus',
-            'Lauren Cohan',
-            'Danai Gurira',
+        'Andrew Lincoln',
+        'Norman Reedus',
+        'Lauren Cohan',
+        'Danai Gurira',
+        'emilia clark',
+        'kit harington',
+        'sophie turner'
     ];
 
     public function load(ObjectManager $manager)
