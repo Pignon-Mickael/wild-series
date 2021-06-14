@@ -66,9 +66,15 @@ class Program
      */
     private $Year;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Actor::class, mappedBy="program")
+     */
+    private $actors;
+
     public function __construct()
     {
         $this->seasons = new ArrayCollection();
+        $this->actors = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -174,6 +180,33 @@ class Program
     public function setYear(int $Year): self
     {
         $this->Year = $Year;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Actor[]
+     */
+    public function getActors(): Collection
+    {
+        return $this->actors;
+    }
+
+    public function addActor(Actor $actor): self
+    {
+        if (!$this->actors->contains($actor)) {
+            $this->actors[] = $actor;
+            $actor->addProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeActor(Actor $actor): self
+    {
+        if ($this->actors->removeElement($actor)) {
+            $actor->removeProgram($this);
+        }
 
         return $this;
     }

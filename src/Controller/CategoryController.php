@@ -59,29 +59,27 @@ class CategoryController extends AbstractController
      * @param string $categoryName
      * @return Response
      */
-    public function show(string $categoryName): Response
-    {
+    public function show(string $categoryName):Response    {
         $category = $this->getDoctrine()
             ->getRepository(Category::class)
             ->findOneBy(['name' => $categoryName]);
 
-        if ($category) {
+        if($category){
             $programs = $this->getDoctrine()
                 ->getRepository(Program::class)
-                ->findBy(['category' => $category], ['id' => 'DESC'], 3
+                ->findBy(['category' => $category], ['id' => 'DESC'],3
                 );
         }
 
         if (!$category) {
             throw $this->createNotFoundException(
-                'catégorie { $categoryName } introuvable'
+                'La catégorie : '.$categoryName.' n\'existe pas'
             );
         }
-
-        return $this->render('category/show.html.twig', [
-            'category' => $category,
-            'programs' => $programs
-        ]);
+    return $this->render('category/show.html.twig', [
+        'category' => $category,
+        'programs' => $programs
+    ]);
     }
 
 }
