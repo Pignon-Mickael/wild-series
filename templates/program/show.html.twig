@@ -29,6 +29,8 @@
     </nav>
 
     <footer>
-        <a href="{{ path('category_show', { categoryName: program.category.name}) }}">Retour à la catégorie</a>
+        <a href="{{ path('category_show', { 'categoryName': program.category.name}) }}">Retour à la catégorie</a>
+        <br>
+        <a href="{{ path('program_edit', { 'id': program.id}) }}">Editer la série</a>
     </footer>
 {% endblock %}
