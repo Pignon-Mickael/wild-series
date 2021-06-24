@@ -3,15 +3,16 @@
 {% block title %}Toutes les séries {% endblock %}
 
 {% block content %}
-<h1>Toutes les series de la table program</h1>
+    <h1>Toutes les series de la table program</h1>
     {% for program in programs %}
-    <div>
-        <h2>{{ loop.index }} / {{ program.title }}</h2>
-        <p>{{ program.summary }}</p>
-        <a href="{{ path('program_show', {'id': program.id }) }}">{{ program.title }}</a>
-    </div>
+        <div class="w-75 p-3">
+            <h2>{{ loop.index }} /
+                <a href="{{ path('program_show', {'slug': program.slug }) }}">{{ program.title }}</a>
+            </h2>
+            <p class="">{{ program.summary }}</p>
+        </div>
     {% else %}
-    Aucune série trouvée
+        Aucune série trouvée
     {% endfor %}
 
     <a href="{{ path('app_index') }}">

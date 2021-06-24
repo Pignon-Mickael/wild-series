@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use App\Entity\Episode;
+use App\Service\Slugify;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -60,11 +61,22 @@ nouvelle alliance pour reprendre leur royaume de "l\'usurpateur" roi Robert...',
         ]
     ];
 
+    /**
+     * @var Slugify
+     */
+    private $slug;
+
+    public function __construct(Slugify $slug)
+    {
+        $this->slug = $slug;
+    }
+
     public function load(ObjectManager $manager)
     {
         foreach (self::EPISODES as $val){
             $episode = new Episode();
             $episode->setTitle($val['title']);
+            $episode->setSlug($this->slug->generate($val['title']));
             $episode->setNumber($val['number']);
             $episode->setSynopsis($val['synopsis']);
             $episode->setSeason($this->getReference('season_' . $val['season']));

@@ -6,6 +6,7 @@ use App\Entity\Episode;
 use App\Entity\Program;
 use App\Entity\Season;
 use App\Form\ProgramType;
+use App\Service\Slugify;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -36,15 +37,18 @@ class ProgramController extends AbstractController
     /**
      * @route ("/new", name="new")
      * @param Request $request
+     * @param Slugify $slugify
      * @return Response
      */
-    public function new(Request $request): Response
+    public function new(Request $request, Slugify $slugify): Response
     {
         $program = new Program();
         $form = $this->createForm(ProgramType::class, $program);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             $entityManager->persist($program);
             $entityManager->flush();
             return $this->redirectToRoute('category_show', [ 'categoryName'=> $program->getCategory()->getName()]);
@@ -55,14 +59,16 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="edit", methods={"GET","POST"})
      */
-    public function edit(Request $request, Program $program): Response
+    public function edit(Request $request, Program $program, Slugify $slugify): Response
     {
         $form = $this->createForm(programType::class, $program);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $slug = $slugify->generate($program->getTitle());
+            $program->setSlug($slug);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('program_show', ['id' => $program->getId()]);
@@ -89,18 +95,17 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="show")
+     * @Route("/{slug}", name="show")
      * @param Program $program
      * @return Response
      */
-
     public function show(Program $program): Response
     {
         return $this->render('program/show.html.twig', ['program' => $program]);
     }
 
     /**
-     * @route("/{program<^[0-9]+$>}/seasons/{season<^[0-9]+$>}", methods={"GET"}, name="season_show")
+     * @route("/{slug}/saison-{number<^[0-9]+$>}", methods={"GET"}, name="season_show")
      * @param Program $program
      * @param Season $season
      * @return Response
@@ -114,7 +119,7 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @route("/{program}/comment/{comment}", name="show_comment")
+     * @route("/{slug}/comment/{comment}", name="show_comment")
      */
     public function showProgramComment(Program $program, Comment $comment): Response
     {
@@ -125,7 +130,9 @@ class ProgramController extends AbstractController
     }
 
     /**
-     * @route("/{program}/seasons/{season}/episodes/{episode}", name="episode_show")
+     * @route("/{program_slug}/saison-{number<^[0-9]+$>}/{episode_slug}", name="episode_show")
+     * @ParamConverter("program", options={"mapping": {"program_slug": "slug"}})
+     * @ParamConverter("episode", options={"mapping": {"episode_slug": "slug"}})
      * @param Program $program
      * @param Season $season
      * @param Episode $episode
