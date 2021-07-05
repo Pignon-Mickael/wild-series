@@ -1,0 +1,14 @@
+{% extends 'layoutMail.html.twig' %}
+
+{% block body %}
+
+    <h1>Une nouvel épisode a été ajouté dans {{ episode.season.program.title }}</h1>
+    <p>Salut !</p>
+    <p>L'épisode {{ episode.number }} : {{ episode.title }} a été ajouté</p>
+    <p>Synopsis : {{ episode.synopsis }}</p>
+
+    <p>Pour consulter l'épisode, <a href="{{ url('program_episode_show', {
+            'program_slug': episode.season.program.slug,
+            'number': episode.season.number,
+            'episode_slug': episode.slug }) }}">cliquez ici</a></p>
+{% endblock %}

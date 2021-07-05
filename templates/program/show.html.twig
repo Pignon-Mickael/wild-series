@@ -25,14 +25,33 @@
     </div>
 
     <nav class="season">
-        {% for season in program.seasons %}
-            <a href="{{ path('program_season_show', { 'slug': program.slug, 'number': season.number }) }}">saison {{ season.number }}</a>
+        <table>
+            <thead>
+            <tr>
+                <th>N° de saison</th>
+                <th>action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for season in program.seasons %}
+            <tr>
+                <td>saison {{ season.number }}</td>
+                <td>
+                    <a href="{{ path('program_season_show', { 'slug': program.slug, 'number': season.number }) }}">Voir
+                        les épisodes</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
         {% endfor %}
+
+        <a href="{{ path('season_new') }}">Ajouter une saison</a>
     </nav>
 
-    <footer>
+    <div>
         <a href="{{ path('category_show', { 'categoryName': program.category.name}) }}">Retour à la catégorie</a>
         <br>
         <a href="{{ path('program_edit', { 'slug': program.slug}) }}">Editer la série</a>
-    </footer>
+
+    </div>
 {% endblock %}

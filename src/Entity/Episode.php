@@ -43,7 +43,7 @@ class Episode
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $slug;
+    private $slug = "";
 
     public function getId(): ?int
     {

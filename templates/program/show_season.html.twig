@@ -10,13 +10,13 @@
         <p>Liste des épisodes : </p>
 
         {% for episode in season.episodes %}
-
+            <p>episode {{ episode.number }} : {{ episode.title }}</p>
             <a href="{{ path('program_episode_show', {
                 'program_slug': program.slug,
                 'number': season.number,
                 'episode_slug': episode.slug
             }) }}">
-                episode {{ episode.number }} : {{ episode.title }}
+                Détail de l'épisode
             </a>
             <br>
 

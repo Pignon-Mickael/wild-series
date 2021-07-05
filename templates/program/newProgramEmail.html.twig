@@ -1,0 +1,10 @@
+{% extends 'layoutMail.html.twig' %}
+
+{% block body %}
+    <h1>Nouvelle série : {{ program.title }} vient d'être ajoutée</h1>
+    <p>Salut, la nouvelle série {{ program.title }} a été ajoutée sur Wild Series</p>
+    <p>Résumé : {{ program.summary }}</p>
+
+    <p>Pour consulter l'épisode', <a href="{{ url('program_show', {'slug': program.slug }) }}">cliquez ici</a></p>
+
+{% endblock %}
